@@ -15,6 +15,7 @@ public class RazArraxor extends PollingScript<ClientContext>{
 	@Override
 	public void start() {
 		taskList.addAll(Arrays.asList(new PrayerSwitchTask(ctx)));
+		ctx.input.send("a");
 	}
 
 	@Override
