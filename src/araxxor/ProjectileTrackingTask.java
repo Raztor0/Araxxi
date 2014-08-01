@@ -6,6 +6,10 @@ import org.powerbot.script.rt6.ClientContext;
 import org.powerbot.script.rt6.Projectile;
 
 public class ProjectileTrackingTask extends Task<ClientContext>{
+	/*
+	 * 4979 - Mage projectile first phase
+	 */
+	
 	public ProjectileTrackingTask(ClientContext ctx) {
 		super(ctx);
 	}
@@ -13,7 +17,7 @@ public class ProjectileTrackingTask extends Task<ClientContext>{
 	@Override
 	public boolean activate() {
 		/* We're just spitting out all the ids of the projectiles right now */
-		return true;
+		return !ctx.projectiles.select().isEmpty();
 	}
 
 	@Override
