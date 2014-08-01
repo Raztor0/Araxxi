@@ -30,6 +30,9 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 		if (!ctx.npcs.select().name("Araxxor").isEmpty()) { /* We found araxxor */
 			Npc araxxor = ctx.npcs.select().name("Araxxor").first().poll();
 			int animation = araxxor.animation();
+			if(animation == 24075) {
+				return !this.isPlayerPrayingMage();
+			}
 			/*
 			 * Do nothing for now.
 			 */
