@@ -6,8 +6,9 @@ import java.util.List;
 
 import org.powerbot.script.rt6.ClientContext;
 import org.powerbot.script.PollingScript;
+import org.powerbot.script.Script;
 
-@PollingScript.Manifest(name="Raz Arraxor", description="Switches prayers based on arraxor's attack style, so you don't have to.")
+@Script.Manifest(name="Raz Arraxor", description="Switches prayers based on arraxor's attack style, so you don't have to.", properties = "client=6")
 public class RazArraxor extends PollingScript<ClientContext>{
 	private List<Task> taskList = new ArrayList<Task>();
 	
