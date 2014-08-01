@@ -2,6 +2,7 @@ package araxxor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt6.ClientContext;
@@ -41,6 +42,8 @@ public class HighlightPathToLightTask extends Task<ClientContext> {
 	public void repaint(Graphics g) {
 		g.setColor(Color.CYAN);
 		g.drawPolygon(ctx.players.local().tile().matrix(ctx).bounds());
+		Point mapPoint = ctx.players.local().tile().matrix(ctx).mapPoint();
+		g.drawRect((int)mapPoint.getX(), (int)mapPoint.getY(), 4, 4);
 //		if(this.pathToLight != null) {
 //			Tile nextTile = this.pathToLight.next();
 //			while(nextTile != this.pathToLight.end()) { /* Loop through our path until we get to the end */
