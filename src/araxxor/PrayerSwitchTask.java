@@ -72,8 +72,9 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 			this.prayRange();
 		}
 		
+		/* Sleep a little bit so as to account for any delays between pressing the key and having the prayer icon change */
 		try {
-			Thread.sleep(250, 500);
+			Thread.sleep(1000, 1200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
