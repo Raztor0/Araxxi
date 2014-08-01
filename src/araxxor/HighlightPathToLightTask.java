@@ -41,7 +41,7 @@ public class HighlightPathToLightTask extends Task<ClientContext> {
 		if(this.pathToLight != null) {
 			Tile nextTile = this.pathToLight.next();
 			while(nextTile != this.pathToLight.end()) { /* Loop through our path until we get to the end */
-				nextTile.matrix(ctx).draw(g);
+				g.drawPolygon(nextTile.matrix(ctx).bounds());
 				nextTile = this.pathToLight.next();
 			}
 		}
