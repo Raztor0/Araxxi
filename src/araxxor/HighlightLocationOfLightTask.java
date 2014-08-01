@@ -9,12 +9,12 @@ import org.powerbot.script.rt6.ClientContext;
 import org.powerbot.script.rt6.GameObject;
 import org.powerbot.script.rt6.LocalPath;
 
-public class HighlightPathToLightTask extends Task<ClientContext> {
+public class HighlightLocationOfLightTask extends Task<ClientContext> {
 	private final int groundLightId = 91665;
 	
 	private Tile lightTile = null;
 
-	public HighlightPathToLightTask(ClientContext ctx) {
+	public HighlightLocationOfLightTask(ClientContext ctx) {
 		super(ctx);
 	}
 

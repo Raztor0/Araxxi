@@ -1,13 +1,19 @@
 package araxxor;
 
+import java.util.Iterator;
+
 import org.powerbot.script.rt6.ClientContext;
 import org.powerbot.script.rt6.Npc;
+import org.powerbot.script.rt6.Projectile;
 
 public class PrayerSwitchTask extends Task<ClientContext> {
 	private final int[] attackIds = {
 			24047,	// range attack
 			24095	// mage attack
 	};
+	
+	private final int mageProjectileAraxxorId = 4979;
+	private final int rangeProjectileAraxxorId = 4997;
 	
 	private final String prayRangeHotKey = "a";
 	private final String prayMageHotKey = "b";
@@ -22,14 +28,55 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 	@Override
 	public boolean activate() {
 		if (!ctx.npcs.select().name("Araxxor").isEmpty()) { /* We found araxxor */
-			Npc araxxor = ctx.npcs.select().name("Araxxor").first().poll();
-			int animation = araxxor.animation();
-			/*
-			 * Do nothing for now.
-			 */
-			System.out.println("Found araxxor");
-			System.out.println("Araxxor's current animation id is: " + animation);
-			System.out.println("Doing nothing.. for now");
+//			Npc araxxor = ctx.npcs.select().name("Araxxor").first().poll();
+			
+			Projectile closestMageProjectile = null;
+			Projectile closestRangeProjectile = null;
+			
+			if(!ctx.projectiles.select().id(this.mageProjectileAraxxorId).isEmpty()) { /* There's a mage projectile somewhere */
+				Iterator<Projectile> iterator = ctx.projectiles.select().id(this.mageProjectileAraxxorId).iterator();
+				while(iterator.hasNext()) {
+					Projectile projectile = iterator.next();
+					if(closestMageProjectile == null) {
+						closestMageProjectile = projectile;
+						continue;
+					} else {
+						if(ctx.movement.distance(projectile) < ctx.movement.distance(closestMageProjectile)) {
+							closestMageProjectile = projectile;
+						}
+					}
+				}
+			}
+			
+			if(!ctx.projectiles.select().id(rangeProjectileAraxxorId).isEmpty()) { /* There's a range projectile somewhere */
+				Iterator<Projectile> iterator = ctx.projectiles.select().id(this.rangeProjectileAraxxorId).iterator();
+				while(iterator.hasNext()) {
+					Projectile projectile = iterator.next();
+					if(closestRangeProjectile == null) {
+						closestRangeProjectile = projectile;
+					} else {
+						if(ctx.movement.distance(projectile) < ctx.movement.distance(closestRangeProjectile)) {
+							closestRangeProjectile = projectile;
+						}
+					}
+				}
+			}
+			
+			/* At this point we have the closest range projectile and the closest mage projectile to the player */
+			if(closestMageProjectile != null) {
+				if(closestRangeProjectile != null) { /* There's both a range and mage projectile */
+					if(ctx.movement.distance(closestMageProjectile) < ctx.movement.distance(closestRangeProjectile)) {
+						return !this.isPlayerPrayingMage();
+					} else {
+						return !this.isPlayerPrayingRange();
+					}
+				} else { /* There's no range projectile */
+					return !this.isPlayerPrayingMage();
+				}
+			} else if(closestRangeProjectile != null) { /* If we get here it means we have no mage projectile
+														   but we do have a range projectile */
+				return !this.isPlayerPrayingRange();
+			}
 		} else if (!ctx.npcs.select().name("Araxxi").isEmpty()) { /* We found araxxi */
 			Npc araxxi = ctx.npcs.select().name("Araxxi").first().poll();
 			System.out.println("Found araxxi");
