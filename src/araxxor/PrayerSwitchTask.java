@@ -71,6 +71,12 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 		} else {
 			this.prayRange();
 		}
+		
+		try {
+			Thread.sleep(250, 500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private Boolean isPlayerPrayingRange() {
