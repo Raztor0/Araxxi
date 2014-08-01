@@ -9,7 +9,7 @@ import org.powerbot.script.rt6.ClientContext;
 import org.powerbot.script.rt6.GameObject;
 import org.powerbot.script.rt6.LocalPath;
 
-public class HighlightPathToLightTask extends Task<ClientContext> implements PaintListener{
+public class HighlightPathToLightTask extends Task<ClientContext> {
 	private final int groundLightId = 91665;
 	
 	private LocalPath pathToLight = null;
