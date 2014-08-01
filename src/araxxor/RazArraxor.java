@@ -14,7 +14,7 @@ public class RazArraxor extends PollingScript<ClientContext>{
 	
 	@Override
 	public void start() {
-		taskList.addAll(Arrays.asList(new PrayerSwitchTask(ctx)));
+		taskList.addAll(Arrays.asList(new PrayerSwitchTask(ctx), new HighlightPathToLightTask(ctx)));
 	}
 
 	@Override
@@ -25,5 +25,4 @@ public class RazArraxor extends PollingScript<ClientContext>{
 			}
 		}
 	}
-
 }

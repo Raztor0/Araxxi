@@ -1,13 +1,7 @@
 package araxxor;
 
-import java.util.Iterator;
-
 import org.powerbot.script.rt6.ClientContext;
-import org.powerbot.script.rt6.MobileIdNameQuery;
 import org.powerbot.script.rt6.Npc;
-import org.powerbot.script.rt6.Projectile;
-
-import sun.util.logging.resources.logging;
 
 public class PrayerSwitchTask extends Task<ClientContext> {
 	private final int[] attackIds = {
@@ -15,8 +9,8 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 			24095	// mage attack
 	};
 	
-	private final int prayRangeHotKey = 0;
-	private final int prayMageHotKey = 1;
+	private final String prayRangeHotKey = "a";
+	private final String prayMageHotKey = "b";
 	
 	private final int rangePrayerIcon = 14;
 	private final int magePrayerIcon = 13;
@@ -51,12 +45,7 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 				return false;
 			}
 		}
-
-//		Iterator<Projectile> iterator = ctx.projectiles.select().iterator();
-//		while (iterator.hasNext()) {
-//			Projectile projectile = iterator.next();
-//		}
-
+		
 		return false;
 	}
 
@@ -89,11 +78,11 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 	}
 	
 	private void prayRange() {
-		ctx.input.send("a");
+		ctx.input.send(this.prayRangeHotKey);
 	}
 	
 	private void prayMage() {
-		ctx.input.send("b");
+		ctx.input.send(this.prayMageHotKey);
 	}
 
 }
