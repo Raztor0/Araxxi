@@ -30,8 +30,10 @@ public class RazArraxor extends PollingScript<ClientContext> implements PaintLis
 
 	@Override
 	public void repaint(Graphics g) {
-		for (Task task : this.taskList)  {
-			task.repaint(g);
+		for (Task task : this.taskList) {
+			if (task.activate()) {
+				task.repaint(g);
+			}
 		}
 	}
 }
