@@ -43,7 +43,7 @@ public class HighlightPathToLightTask extends Task<ClientContext> {
 		g.setColor(Color.CYAN);
 		g.drawPolygon(ctx.players.local().tile().matrix(ctx).bounds());
 		Point mapPoint = ctx.players.local().tile().matrix(ctx).mapPoint();
-		g.drawRect((int)mapPoint.getX(), (int)mapPoint.getY(), 4, 4);
+		g.drawRect((int)mapPoint.getX() - 2, (int)mapPoint.getY() - 2, 4, 4);
 //		if(this.pathToLight != null) {
 //			Tile nextTile = this.pathToLight.next();
 //			while(nextTile != this.pathToLight.end()) { /* Loop through our path until we get to the end */
