@@ -28,11 +28,13 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 	@Override
 	public boolean activate() {
 		if (!ctx.npcs.select().name("Araxxor").isEmpty()) { /* We found araxxor */
-			Npc araxoxr = ctx.npcs.select().name("Araxxor").first().poll();
+			Npc araxxor = ctx.npcs.select().name("Araxxor").first().poll();
+			int animation = araxxor.animation();
 			/*
 			 * Do nothing for now.
 			 */
 			System.out.println("Found araxxor");
+			System.out.println("Araxxor's current animation id is: " + animation);
 			System.out.println("Doing nothing.. for now");
 		} else if (!ctx.npcs.select().name("Araxxi").isEmpty()) { /* We found araxxi */
 			Npc araxxi = ctx.npcs.select().name("Araxxi").first().poll();
