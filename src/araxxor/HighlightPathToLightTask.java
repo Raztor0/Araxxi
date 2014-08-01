@@ -37,6 +37,7 @@ public class HighlightPathToLightTask extends Task<ClientContext> implements Pai
 
 	@Override
 	public void repaint(Graphics g) {
+		System.out.println("Repaint is getting called");
 		g.setColor(Color.CYAN);
 		if(this.pathToLight != null) {
 			Tile nextTile = this.pathToLight.next();

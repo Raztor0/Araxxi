@@ -8,6 +8,7 @@ import org.powerbot.script.rt6.Projectile;
 public class ProjectileTrackingTask extends Task<ClientContext>{
 	/*
 	 * 4979 - Mage projectile first phase
+	 * 4997 - Range projectile first phase
 	 */
 	
 	public ProjectileTrackingTask(ClientContext ctx) {
