@@ -11,7 +11,6 @@ import org.powerbot.script.rt6.LocalPath;
 
 public class HighlightLocationOfLightTask extends Task<ClientContext> {
 	private final int groundLightId = 91665;
-	
 	private Tile lightTile = null;
 
 	public HighlightLocationOfLightTask(ClientContext ctx) {
@@ -20,9 +19,9 @@ public class HighlightLocationOfLightTask extends Task<ClientContext> {
 
 	@Override
 	public boolean activate() {
-		if(!ctx.objects.select().id(91665).isEmpty()) { /* The light is visible somewhere */
+		if(!ctx.objects.select().id(this.groundLightId).isEmpty()) { /* The light is visible somewhere */
 			return true;
-		} else { /* There's no light; let's clear our path so we don't try to draw stuff */
+		} else { /* There's no light; let's clear our tile so we don't try to draw stuff */
 			this.lightTile = null;
 			return false;
 		}
@@ -30,9 +29,8 @@ public class HighlightLocationOfLightTask extends Task<ClientContext> {
 
 	@Override
 	public void execute() {
-		/* Set up our path */
-		GameObject light = ctx.objects.select().id(this.groundLightId).poll();
-		this.lightTile = light.tile();
+		/* Set up our tile */
+		this.lightTile = ctx.objects.select().id(this.groundLightId).poll().tile();
 	}
 
 	@Override

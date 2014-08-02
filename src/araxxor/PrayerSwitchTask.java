@@ -27,7 +27,7 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 
 	@Override
 	public boolean activate() {
-		if (!ctx.npcs.select().name("Araxxor").isEmpty()) { /* We found araxxor */
+		if (ctx.npcs.select().name("Araxxi").isEmpty()) { /* We didn't find araxxi yet */
 //			Npc araxxor = ctx.npcs.select().name("Araxxor").first().poll();
 			
 			Projectile closestMageProjectile = null;
@@ -77,10 +77,8 @@ public class PrayerSwitchTask extends Task<ClientContext> {
 														   but we do have a range projectile */
 				return !this.isPlayerPrayingRange();
 			}
-		} else if (!ctx.npcs.select().name("Araxxi").isEmpty()) { /* We found araxxi */
+		} else { /* We found araxxi */
 			Npc araxxi = ctx.npcs.select().name("Araxxi").first().poll();
-			System.out.println("Found araxxi");
-			
 			int animation = araxxi.animation();
 			if (animation == attackIds[0]) { /* He's hitting with range */
 				System.out.println("Araxxi is about to hit us with range");

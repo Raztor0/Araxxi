@@ -16,7 +16,8 @@ public class RazArraxor extends PollingScript<ClientContext> implements PaintLis
 	
 	@Override
 	public void start() {
-		taskList.addAll(Arrays.asList(new PrayerSwitchTask(ctx), new HighlightLocationOfLightTask(ctx), new ProjectileTrackingTask(ctx)));
+		taskList.addAll(Arrays.asList(new PrayerSwitchTask(ctx), new HighlightLocationOfLightTask(ctx), new ProjectileTrackingTask(ctx),
+				new HighlightLocationOfAcidicSplashTask(ctx)));
 	}
 
 	@Override
