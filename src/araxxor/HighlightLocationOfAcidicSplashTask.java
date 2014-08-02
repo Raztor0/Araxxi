@@ -32,7 +32,7 @@ public class HighlightLocationOfAcidicSplashTask extends Task<ClientContext>{
 	public void repaint(Graphics g) {
 		g.setColor(Color.RED);
 		if(!ctx.objects.select().id(this.acidicSplashId).isEmpty()) {
-			ctx.objects.select().id(this.acidicSplashId).poll().draw(g);
+			g.drawPolygon(ctx.objects.select().id(this.acidicSplashId).poll().area().getPolygon());
 		}
 	}
 }
